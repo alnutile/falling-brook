@@ -13,12 +13,13 @@ class Post extends Model
 
     protected $appends = ['read_time'];
 
-    public function getReadTimeAttribute() {
+    public function getReadTimeAttribute()
+    {
         return readtime($this->body);
     }
 
-    public function tags() {
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class);
-    }    
-
+    }
 }

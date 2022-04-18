@@ -18,7 +18,8 @@ class PostObserver
         $this->convertToHtml($post);
     }
 
-    protected function convertToHtml(Post $post) {
+    protected function convertToHtml(Post $post)
+    {
         $post->html = Str::of($post->markdown)->markdown();
         $post->saveQuietly();
     }

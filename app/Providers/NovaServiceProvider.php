@@ -55,7 +55,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function dashboards()
     {
         return [
-            new \App\Nova\Dashboards\Main,
+            new \App\Nova\Dashboards\Main(),
         ];
     }
 

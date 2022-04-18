@@ -27,6 +27,6 @@ class PostResource extends JsonResource
             "tags" => $this->tags,
             "lead" => optional($this->tags->first())->name,
             "summary" => Str::of(Str::limit(strip_tags($this->body), 180))->markdown(),
-        ]; 
+        ];
     }
 }

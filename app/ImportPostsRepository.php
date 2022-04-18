@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App;
 
@@ -8,23 +8,22 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class ImportPostsRepository {
-
-
-    public function handle() {
+class ImportPostsRepository
+{
+    public function handle()
+    {
         $files = File::allFiles(storage_path("app/posts"));
 
-        foreach($files as $file) {
-            if($file->isFile() && $file->getExtension() == "md") {
+        foreach ($files as $file) {
+            if ($file->isFile() && $file->getExtension() == "md") {
                 try {
-                    
                     $content = File::get($file->getPathname());
-                    $results = (new ProcessFile)->handle($content, $file);
-                    
-                    if($results->markdown) {
+                    $results = (new ProcessFile())->handle($content, $file);
+
+                    if ($results->markdown) {
                         $post = Post::create($results->toModel());
-                    
-                        foreach($results->tags as $tag) {
+
+                        foreach ($results->tags as $tag) {
                             $tag = trim($tag);
                             $post->tags()->firstOrCreate(
                                 ['name' => Str::title($tag)],
@@ -32,8 +31,7 @@ class ImportPostsRepository {
                             );
                         }
                     }
-
-                } catch(\Exception $e) {
+                } catch (\Exception $e) {
                     logger($e->getMessage());
                 }
             } elseif ($file->isFile() && ($file->getExtension() == "png" || $file->getExtension() == "jpg")) {
@@ -43,7 +41,7 @@ class ImportPostsRepository {
                 logger("Images", [$from, $to]);
 
                 File::copy($from, $to);
-            } 
+            }
         }
     }
 }
