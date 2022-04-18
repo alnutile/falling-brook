@@ -1,25 +1,25 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+  <div class="relative bg-gray-50 pt-4 pb-10 px-4 sm:px-6 lg:pt-4 lg:pb-14 lg:px-8">
     <div class="absolute inset-0">
       <div class="bg-white h-1/3 sm:h-2/3" />
     </div>
     <div class="relative max-w-7xl mx-auto">
       <div class="text-center">
         <h2 class="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">Recent Posts</h2>
-        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">see more here</p>
+        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">Laravel, PHP, Inertia, Livewire, Tailwind</p>
       </div>
-      <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
+      <div class="mt-6 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
         <div v-for="post in posts" :key="post.id" class="flex flex-col rounded-lg shadow-lg overflow-hidden">
           <div class="flex-shrink-0">
             <img class="h-48 w-full object-cover" :src="post.hero" alt="" />
           </div>
           <div class="flex-1 bg-white p-6 flex flex-col justify-between">
             <div class="flex-1">
-              <p class="text-sm font-medium text-indigo-600">Post
-                <!-- <a :href="`/terms/${post.slug}`" class="hover:underline">
-                  {{ post.category.name }}
-                </a> -->
+              <p class="text-sm font-medium text-indigo-600">
+                <a :href="`/terms/${tag.id}`" class="hover:underline" v-for="tag in post.tags" :key="tag.id">
+                  {{ tag.name }}&nbsp;
+                </a>
               </p>
               <a :href="`/terms/${post.slug}`" class="block mt-2">
                 <p class="text-xl font-semibold text-gray-900">
@@ -47,7 +47,7 @@
                     {{ post.date }}
                   </time>
                   <span aria-hidden="true"> &middot; </span>
-                  <span> {{ post.read_time }} read </span>
+                  <span> {{ post.read_time }} min read </span>
                 </div>
               </div>
             </div>

@@ -15,6 +15,6 @@ class ImportPostsRepositoryTest extends TestCase
     public function test_interates_over_files() {
         $this->assertDatabaseCount("posts", 0);
         ImportPostsRepository::handle();
-        $this->assertDatabaseCount("posts", 263);
+        $this->assertDatabaseCount("posts", 262);
     }
 }

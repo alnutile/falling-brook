@@ -24,6 +24,8 @@ class PostResource extends JsonResource
             "slug" => $this->slug,
             "read_time" => readtime($this->body),
             "hero" => random_hero(),
+            "tags" => $this->tags,
+            "lead" => optional($this->tags->first())->name,
             "summary" => Str::of(Str::limit(strip_tags($this->body), 180))->markdown(),
         ]; 
     }

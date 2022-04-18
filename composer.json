@@ -13,7 +13,8 @@
         "laravel/nova": "~4.0",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.0",
+        "ylsideas/feature-flags": "^1.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Models\Tag;
 use App\Models\Post;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,7 +20,19 @@ class ImportPostsRepository {
                     
                     $content = File::get($file->getPathname());
                     $results = (new ProcessFile)->handle($content, $file);
-                    Post::create($results->toModel());
+                    
+                    if($results->markdown) {
+                        $post = Post::create($results->toModel());
+                    
+                        foreach($results->tags as $tag) {
+                            $tag = trim($tag);
+                            $post->tags()->firstOrCreate(
+                                ['name' => Str::title($tag)],
+                                ['slug' => Str::slug($tag)]
+                            );
+                        }
+                    }
+
                 } catch(\Exception $e) {
                     logger($e->getMessage());
                 }

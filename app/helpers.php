@@ -7,7 +7,7 @@ if (!function_exists("random_hero")) {
     function random_hero()
     {
         $options = [
-            "/images/heros/default-hero.png",
+            "/images/heros/default-hero.jpg",
             "/images/heros/hero-coding.png",
             "/images/heros/hero-office.png",
             "/images/heros/hero-space.png",
