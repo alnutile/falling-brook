@@ -16,5 +16,7 @@ class PostTest extends TestCase
         $this->assertNotNull($model->title);
         $this->assertNotNull($model->body);
         $this->assertNotNull($model->slug);
+        $this->assertNotNull($model->html);
+        $this->assertNotNull($model->read_time);
     }
 }

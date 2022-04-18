@@ -10,4 +10,11 @@ class Post extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $appends = ['read_time'];
+
+    public function getReadTimeAttribute() {
+        return readtime($this->body);
+    }
+
 }

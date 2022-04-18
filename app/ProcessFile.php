@@ -34,6 +34,7 @@ class ProcessFile {
         return [
             "title" => $this->title,
             'body' => $this->markdown,
+            "html" => Str::of($this->markdown)->markdown(),
             'image_url' => $this->image_url,
             "created_at" => Carbon::parse($this->date),
             "slug" => $this->file->getBasename('.md')
