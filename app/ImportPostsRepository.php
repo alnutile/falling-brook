@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Post;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ImportPostsRepository {
 
@@ -14,14 +15,21 @@ class ImportPostsRepository {
         foreach($files as $file) {
             if($file->isFile() && $file->getExtension() == "md") {
                 try {
-                    logger("Files", [$file->getPathname()]);
+                    
                     $content = File::get($file->getPathname());
                     $results = (new ProcessFile)->handle($content, $file);
                     Post::create($results->toModel());
                 } catch(\Exception $e) {
                     logger($e->getMessage());
                 }
-            }
+            } elseif ($file->isFile() && ($file->getExtension() == "png" || $file->getExtension() == "jpg")) {
+                $from = $file->getRealPath();
+                $to = public_path("images/{$file->getFilename()}");
+
+                logger("Images", [$from, $to]);
+
+                File::copy($from, $to);
+            } 
         }
     }
 }

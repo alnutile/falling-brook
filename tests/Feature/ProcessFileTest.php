@@ -30,6 +30,18 @@ class ProcessFileTest extends TestCase
         Post::create($results->toModel());
     }
 
+    public function test_images_copied() {
+        $path = base_path("tests/fixtures/breaks.md");
+        $content = File::get($path);
+        $file = new SplFileInfo("breaks.md", $path, $path);
+        $results = ProcessFile::handle($content, $file);
+
+        $this->assertNotNull($results->title);
+        $this->assertNotNull($results->date);
+        $this->assertNotNull($results->image_url);
+        $this->assertCount(2, $results->tags);
+    }
+
     public function test_content() {
         $content = $this->getContent();
         $results = ProcessFile::handle($content);

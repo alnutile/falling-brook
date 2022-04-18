@@ -16,6 +16,5 @@ class ImportPostsRepositoryTest extends TestCase
         $this->assertDatabaseCount("posts", 0);
         ImportPostsRepository::handle();
         $this->assertDatabaseCount("posts", 263);
-
     }
 }
