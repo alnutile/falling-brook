@@ -28625,7 +28625,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "relative bg-gray-50 pt-4 pb-10 px-4 sm:px-6 lg:pt-4 lg:pb-14 lg:px-8"
+  "class": "relative bg-gray-50 pt-4 pb-10 px-4 sm:px-6 lg:pt-4 lg:pb-14 lg:px-8 border-slate-300 border-b-2"
 };
 var _hoisted_2 = {
   "class": "flex-wrap gap-1 hidden sm:flex"
@@ -28699,13 +28699,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "relative bg-gray-50 pt-4 pb-10 px-4 sm:px-6 lg:pt-4 lg:pb-14 lg:px-8"
+  "class": "relative bg-gray-100 pt-4 pb-10 px-4 sm:px-6 lg:pt-4 lg:pb-14 lg:px-8"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "absolute inset-0"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "bg-white h-1/3 sm:h-2/3"
+  "class": "h-1/3 sm:h-2/3"
 })], -1
 /* HOISTED */
 );
@@ -28964,7 +28964,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Disclosure, {
     as: "nav",
-    "class": "bg-white drop-shadow-md"
+    "class": "bg-white drop-shadow-sm"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
       var open = _ref.open;
