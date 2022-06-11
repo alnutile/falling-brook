@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class `ImportPostsRepository
+class ImportPostsRepository
 {
     public function handle()
     {
