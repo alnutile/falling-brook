@@ -17,17 +17,7 @@ use Illuminate\Foundation\Application;
 |
 */
 
-Route::get('/', function () {
-    $recents = Post::whereNotNull("body")->latest()->limit(3)->get();
-
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-        'recents' => PostResource::collection($recents)
-    ]);
-});
+Route::get('/', \App\Http\Controllers\HomeController::class);
 
 Route::middleware([
     'auth:sanctum',

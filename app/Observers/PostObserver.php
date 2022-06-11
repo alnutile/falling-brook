@@ -20,7 +20,7 @@ class PostObserver
 
     protected function convertToHtml(Post $post)
     {
-        $post->html = Str::of($post->markdown)->markdown();
+        $post->html = Str::of($post->body)->markdown();
         $post->saveQuietly();
     }
 

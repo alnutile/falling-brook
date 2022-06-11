@@ -1062,12 +1062,6 @@ select {
 .-mt-px {
   margin-top: -1px;
 }
-.mt-12 {
-  margin-top: 3rem;
-}
-.ml-auto {
-  margin-left: auto;
-}
 .block {
   display: block;
 }
@@ -1257,6 +1251,12 @@ select {
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.grid-cols-10 {
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+}
 .flex-row {
   flex-direction: row;
 }
@@ -1409,10 +1409,6 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
-.border-gray-700 {
-  --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity));
-}
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1491,9 +1487,6 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
-.p-1 {
-  padding: 0.25rem;
-}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1554,10 +1547,6 @@ select {
   padding-top: 6rem;
   padding-bottom: 6rem;
 }
-.px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -1591,17 +1580,14 @@ select {
 .pt-8 {
   padding-top: 2rem;
 }
-.pb-20 {
-  padding-bottom: 5rem;
+.pb-10 {
+  padding-bottom: 2.5rem;
 }
 .pl-10 {
   padding-left: 2.5rem;
 }
 .pr-3 {
   padding-right: 0.75rem;
-}
-.pb-10 {
-  padding-bottom: 2.5rem;
 }
 .text-left {
   text-align: left;
@@ -1860,9 +1846,6 @@ select {
 .duration-1000 {
   transition-duration: 1000ms;
 }
-.duration-100 {
-  transition-duration: 100ms;
-}
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2042,12 +2025,6 @@ select {
 }
 .focus\:ring-opacity-50:focus {
   --tw-ring-opacity: 0.5;
-}
-.focus\:ring-offset-2:focus {
-  --tw-ring-offset-width: 2px;
-}
-.focus\:ring-offset-gray-800:focus {
-  --tw-ring-offset-color: #1f2937;
 }
 .active\:bg-gray-100:active {
   --tw-bg-opacity: 1;
@@ -2446,14 +2423,6 @@ select {
   .lg\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
-  }
-
-  .lg\:pt-8 {
-    padding-top: 2rem;
-  }
-
-  .lg\:pb-28 {
-    padding-bottom: 7rem;
   }
 
   .lg\:pt-4 {

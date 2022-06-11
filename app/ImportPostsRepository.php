@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class ImportPostsRepository
+class `ImportPostsRepository
 {
     public function handle()
     {
@@ -38,7 +38,6 @@ class ImportPostsRepository
                 $from = $file->getRealPath();
                 $to = public_path("images/{$file->getFilename()}");
 
-                logger("Images", [$from, $to]);
 
                 File::copy($from, $to);
             }
