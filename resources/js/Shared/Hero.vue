@@ -1,14 +1,14 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-    <div>
-        <div
-            class="grid grid-cols-10 gap-4"
-            v-for="week in github_results.data.user.contributionsCollection.contributionCalendar.weeks">
+    <div class="relative bg-gray-50 pt-4 pb-10 px-4 sm:px-6 lg:pt-4 lg:pb-14 lg:px-8">
+        <div class="flex-wrap gap-1 hidden sm:flex">
             <div
-                v-for="day in week.contributionDays" :key="day.weekday">
-                {{day.date}}
-                <div :style="`background-color: ${day.color}`">{{ day.contributionCount }}</div>
+                :style="`background-color: ${day.color}`" class="w-20 h-20"
+                v-for="day in github_results.days">
             </div>
+        </div>
+        <div class="sm:absolute inset-x-0 bottom-0 w-60 h-60 flex mx-auto min-w-max">
+            <img alt="alfred" class="border border-4 border-white h-60 rounded rounded-full" src="/images/real_me_square.jpeg"/>
         </div>
     </div>
 </template>

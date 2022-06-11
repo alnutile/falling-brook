@@ -1,20 +1,17 @@
 <template>
-  <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
+  <Disclosure as="nav" class="bg-white drop-shadow-md" v-slot="{ open }">
     <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <div class="flex items-center px-2 lg:px-0">
-          <div class="flex-shrink-0">
-            <img class="block lg:hidden h-8 w-auto rounded-full" src="/images/real_me_square.jpeg" alt="Alfred Nutile" />
-            <img class="hidden lg:block h-8 w-auto rounded-full" src="/images/real_me_square.jpeg" alt="Alfred Nutile" />
-          </div>
+          <div class="flex-shrink-0">Alfred Nutile</div>
           <div class="hidden lg:block lg:ml-6">
             <div class="flex space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <Link href="/" 
-              :class="{ 'bg-gray-900 text-white': $page.component === 'Welcome' }"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</Link>
-              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Posts</a>
-              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+              <Link href="/"
+              :class="{ 'underline text-gray-800': $page.component === 'Welcome' }"
+              class="text-gray-700 hover:underline px-3 py-2 rounded-md text-sm font-medium">Home</Link>
+              <a href="#" class="text-gray-700 hover:text-gray-800 hover:underline px-3 py-2 rounded-md text-sm font-medium">Posts</a>
+              <a href="#" class="text-gray-700 hover:text-gray-800 hover:underline px-3 py-2 rounded-md text-sm font-medium">About</a>
             </div>
           </div>
         </div>
@@ -48,7 +45,7 @@
     <DisclosurePanel class="lg:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <DisclosureButton as="a" href="/" 
+        <DisclosureButton as="a" href="/"
         :class="{ 'bg-gray-900 text-white block ': $page.component === 'Welcome' }"
         class="text-gray-300 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">Home</DisclosureButton>
         <DisclosureButton as="a" href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Post</DisclosureButton>

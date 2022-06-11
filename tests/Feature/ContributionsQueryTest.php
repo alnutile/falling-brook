@@ -12,11 +12,11 @@ class ContributionsQueryTest extends TestCase
     public function test_can_query_contributions() {
 
         $body = <<<EOD
-    query {
+    query {P
         user(login: "alnutile") {
           email
           createdAt
-          contributionsCollection(from: "2022-05-11T00:00:00Z", to: "2022-06-10T23:05:23Z") {
+          contributionsCollection(from: "2022-04-04T00:00:00Z", to: "2022-06-10T23:05:23Z") {
             contributionCalendar {
               colors
               totalContributions
