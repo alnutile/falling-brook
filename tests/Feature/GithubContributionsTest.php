@@ -7,6 +7,7 @@ use Facades\App\Screens\Welcome\GithubContributions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
@@ -35,4 +36,22 @@ class GithubContributionsTest extends TestCase
 
         put_fixture("github_contributions_repo.json", $results);
     }
+
+    public function test_cache() {
+
+        $knownDate = Carbon::create(2022, 6, 11, 12);          // create testing date
+
+        Carbon::setTestNow($knownDate);
+
+        $data = get_fixture("github_contributions.json");
+
+        Cache::shouldReceive("remember")->once()->andReturn($data);
+
+        $results = GithubContributions::handle();
+
+        $this->assertNotEmpty($results);
+
+        Http::assertNothingSent();
+    }
+
 }
