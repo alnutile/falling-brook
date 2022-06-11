@@ -18,6 +18,7 @@ class HomeController extends Controller
          * Get this from Cache
          */
         $payload = get_fixture("github_contributions.json");
+        $contributions = GithubContrbutions::handle();
 
         return Inertia::render('Welcome', [
             'github_results' => GithubTransformData::handle($payload),
