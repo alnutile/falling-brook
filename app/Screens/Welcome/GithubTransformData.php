@@ -30,8 +30,6 @@ class GithubTransformData
                 }
             }
 
-
-
             return new ContributionResponseDto(
                 [
                     'total' => $totals,

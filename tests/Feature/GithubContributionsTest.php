@@ -34,7 +34,6 @@ class GithubContributionsTest extends TestCase
             return $shouldBe == $request->data();
         });
 
-        put_fixture("github_contributions_repo.json", $results);
     }
 
     public function test_cache() {

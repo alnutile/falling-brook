@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Facades\App\Screens\Welcome\GithubTransformData;
+use Facades\App\Screens\Welcome\GithubContributions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,11 +17,10 @@ class HomeController extends Controller
         /**
          * Get this from Cache
          */
-        $payload = get_fixture("github_contributions.json");
-        $contributions = GithubContrbutions::handle();
+        $contributions = GithubContributions::handle();
 
         return Inertia::render('Welcome', [
-            'github_results' => GithubTransformData::handle($payload),
+            'github_results' => $contributions,
             'recents' => PostResource::collection($recents)
         ]);
     }

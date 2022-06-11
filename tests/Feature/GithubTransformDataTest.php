@@ -19,8 +19,7 @@ class GithubTransformDataTest extends TestCase
        $first = $results->days[0];
 
        $this->assertNotEmpty($results);
-       $this->assertCount(31, $results->days);
-       $this->assertEquals("2022-05-11", $first['date']);
-       $this->assertEquals("0", $first['weekday']);
+       $this->assertCount(69, $results->days);
+       $this->assertEquals("2022-04-04", $first['date']);
     }
 }
