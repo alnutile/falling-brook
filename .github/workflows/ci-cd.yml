@@ -55,6 +55,7 @@ jobs:
 
       - name: Install Composer dependencies
         run: |
+          composer config http-basic.nova.laravel.com ${{ secrets.NOVA_EMAIL }} ${{ secrets.NOVA_SECRET }}
           composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
           composer install --no-progress --prefer-dist --optimize-autoloader
 
@@ -89,7 +90,7 @@ jobs:
           php artisan storage:link
 
       - name: Test with phpunit
-        run: | 
+        run: |
           npm install && npm run dev
           XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover clover.xml
         env:
