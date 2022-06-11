@@ -16,7 +16,7 @@ class ProcessFileTest extends TestCase
 {
 
     use RefreshDatabase;
-    
+
     public function test_broken_title() {
         $path = base_path("tests/fixtures/breaks.md");
         $content = File::get($path);
@@ -108,13 +108,12 @@ EOD;
         $content = File::get($path);
         $file = new SplFileInfo("breaks.md", $path, $path);
         $results = ProcessFile::handle($content, $file);
-
         $model = Post::create($results->toModel());
-
         $this->assertNotNull($model->slug);
     }
 
     public function test_for_reals() {
+        $this->markTestSkipped("Just for trying locally");
         ImportPostsRepository::handle();
     }
 }
