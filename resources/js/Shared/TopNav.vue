@@ -4,17 +4,8 @@
       <div class="relative flex items-center justify-between h-16">
         <div class="flex items-center px-2 lg:px-0">
           <div class="flex-shrink-0">Alfred Nutile</div>
-          <div class="hidden lg:block lg:ml-6">
-            <div class="flex space-x-4">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <Link href="/"
-              :class="{ 'underline text-gray-800': $page.component === 'Welcome' }"
-              class="text-gray-700 hover:underline px-3 py-2 rounded-md text-sm font-medium">Home</Link>
-              <a href="#" class="text-gray-700 hover:text-gray-800 hover:underline px-3 py-2 rounded-md text-sm font-medium">Posts</a>
-              <a href="#" class="text-gray-700 hover:text-gray-800 hover:underline px-3 py-2 rounded-md text-sm font-medium">About</a>
-            </div>
-          </div>
         </div>
+
         <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end" v-if="search">
           <div class="max-w-lg w-full lg:max-w-xs">
             <label for="search" class="sr-only">Search</label>
@@ -26,6 +17,8 @@
             </div>
           </div>
         </div>
+
+
         <div class="flex lg:hidden">
           <!-- Mobile menu button -->
           <DisclosureButton class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -39,6 +32,19 @@
 
           </div>
         </div>
+
+          <div class="hidden lg:block lg:ml-6">
+              <div class="flex space-x-4">
+                  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                  <Link href="/"
+                        :class="{ 'underline text-gray-800': $page.component === 'Welcome' }"
+                        class="text-gray-700 hover:underline px-3 py-2 rounded-md text-sm font-medium">Home</Link>
+                  <a href="#" class="text-gray-700 hover:text-gray-800 hover:underline px-3 py-2 rounded-md text-sm font-medium">Posts</a>
+                  <a href="#" class="text-gray-700 hover:text-gray-800 hover:underline px-3 py-2 rounded-md text-sm font-medium">About</a>
+              </div>
+          </div>
+
+
       </div>
     </div>
 
@@ -79,7 +85,7 @@ export default {
   },
   data() {
       return {
-          open: false
+          open: false,
       }
   },
   computed: {

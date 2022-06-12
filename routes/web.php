@@ -18,6 +18,9 @@ use Illuminate\Foundation\Application;
 */
 
 Route::get('/', \App\Http\Controllers\HomeController::class);
+Route::get("/terms/{tag}", function(\App\Models\Tag $tag) {
+
+});
 
 Route::middleware([
     'auth:sanctum',
