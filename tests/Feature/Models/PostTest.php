@@ -21,6 +21,14 @@ class PostTest extends TestCase
         $this->assertNotNull($model->read_time);
     }
 
+    public function test_active() {
+        $post = Post::factory()->create();
+        $post2 = Post::factory()->nonActive()->create();
+
+        $posts = Post::published()->get();
+        $this->assertCount(1, $posts);
+    }
+
     public function test_tags() {
         $post = Post::factory()->create();
 
@@ -32,7 +40,7 @@ class PostTest extends TestCase
         );
 
         $tag = "Bar";
-        
+
         $post->tags()->firstOrCreate(
             ['name' => $tag],
             ['slug' => Str::slug($tag)]

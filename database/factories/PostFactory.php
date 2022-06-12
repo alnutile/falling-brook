@@ -25,4 +25,13 @@ class PostFactory extends Factory
             "slug" => $this->faker->slug()
         ];
     }
+
+    public function nonActive()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'active' => 0,
+            ];
+        });
+    }
 }
