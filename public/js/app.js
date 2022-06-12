@@ -28628,14 +28628,14 @@ var _hoisted_1 = {
   "class": "relative bg-gray-50 pt-4 pb-10 px-4 sm:px-6 lg:pt-4 lg:pb-14 lg:px-8 border-slate-300 border-b-2"
 };
 var _hoisted_2 = {
-  "class": "flex-wrap gap-1 hidden sm:flex"
+  "class": "flex-wrap gap-1 flex"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "sm:absolute inset-x-0 bottom-0 w-60 h-60 flex mx-auto min-w-max"
+  "class": "absolute inset-x-0 bottom-5 h-24 w-24 sm:w-60 sm:h-60 flex mx-auto min-w-max"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   alt: "alfred",
-  "class": "border border-4 border-white h-60 rounded rounded-full",
+  "class": "border border-4 border-white sm:h-60 h-24 rounded rounded-full",
   src: "/images/real_me_square.jpeg"
 })], -1
 /* HOISTED */
@@ -28645,7 +28645,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.github_results.days, function (day) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)("background-color: ".concat(day.color)),
-      "class": "w-20 h-20"
+      "class": "sm:w-20 sm:h-20 w-5 h-5"
     }, null, 4
     /* STYLE */
     );
