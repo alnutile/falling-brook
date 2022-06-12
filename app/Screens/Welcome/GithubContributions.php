@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Facades\App\Screens\Welcome\GithubTransformData;
+use YlsIdeas\FeatureFlags\Facades\Features;
 
 class GithubContributions
 {
@@ -13,6 +14,10 @@ class GithubContributions
     {
         $start = Carbon::now()->subDays(63)->startOfDay()->toIso8601String();
         $end = Carbon::now()->endOfDay()->toIso8601String();
+
+        if (Features::accessible("save_dates")) {
+            put_fixture("github_query_dates.json", ['start' => $start, "end" => $end]);
+        }
 
         $results = Cache::remember($start, 3600, function () use ($start, $end) {
             $body = $this->getBody($start, $end);

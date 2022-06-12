@@ -3,6 +3,7 @@
 namespace App\Screens\Welcome;
 
 use Carbon\Carbon;
+use YlsIdeas\FeatureFlags\Facades\Features;
 
 class GithubTransformData
 {
@@ -28,6 +29,10 @@ class GithubTransformData
                     $date = $day['date'];
                     $daysList[] = $day;
                 }
+            }
+
+            if (Features::accessible("save_contrib")) {
+                put_fixture("github_contrib_temp_data.json", $daysList);
             }
 
             return new ContributionResponseDto(

@@ -19,7 +19,8 @@ class Post extends Model
         return readtime($this->body);
     }
 
-    public function scopePublished(Builder $query) {
+    public function scopePublished(Builder $query)
+    {
         return $query->where("active", 1);
     }
 
