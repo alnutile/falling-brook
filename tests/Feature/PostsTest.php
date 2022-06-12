@@ -17,8 +17,6 @@ class PostsTest extends TestCase
         $post = Post::factory()->has(
             Tag::factory()->count(2)
         )->count(10)->create();
-
-
         $this->get(route("posts.index"))->assertStatus(200);
     }
 
@@ -27,11 +25,9 @@ class PostsTest extends TestCase
             Tag::factory()->count(2)
         )->create();
 
-        $tag = Tag::first();
-
-        $this->get(route("terms.list", ["tag" => $tag->id]))
+        $this->get(route("posts.index"))
             ->assertInertia(fn (Assert $page) => $page
-                ->component('Terms/List')
+                ->component('Posts/Index')
                 ->has("posts"));
     }
 }

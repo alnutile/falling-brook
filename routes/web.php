@@ -20,18 +20,17 @@ use Illuminate\Database\Eloquent\Builder;
 Route::get('/', \App\Http\Controllers\HomeController::class)->name("home");
 
 Route::get("/posts", function() {
-    $posts = Post::published()->orderBy("updated_at", "desc")->simplePaginate(10);
+    $posts = Post::published()->latest()->paginate(12);
 
-    return Inertia::render("Terms/List", [
-        "posts" => PostResource::collection($posts),
-        "tag" => $tag
+    return Inertia::render("Posts/Index", [
+        "posts" => PostResource::collection($posts)
     ]);
 })->name("posts.index");
 
 Route::get("/terms/{tag}", function(\App\Models\Tag $tag) {
     $posts = Post::whereHas('tags', function (Builder $query) use ($tag) {
         $query->where('tags.id', $tag->id);
-    })->simplePaginate(10);
+    })->simplePaginate(12);
 
  return Inertia::render("Terms/List", [
      "posts" => PostResource::collection($posts),

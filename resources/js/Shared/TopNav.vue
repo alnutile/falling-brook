@@ -38,10 +38,14 @@
           <div class="hidden lg:block lg:ml-6">
               <div class="flex space-x-4">
                   <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                  <Link href="/"
+                  <Link :href="route('home')"
                         :class="{ 'underline text-gray-800': $page.component === 'Welcome' }"
                         class="text-gray-700 hover:underline px-3 py-2 rounded-md text-sm font-medium">Home</Link>
-                  <a href="#" class="text-gray-700 hover:text-gray-800 hover:underline px-3 py-2 rounded-md text-sm font-medium">Posts</a>
+
+                  <Link :href="route('posts.index')"
+                        :class="{ 'underline text-gray-800': $page.component === 'Posts/Index' }"
+                        class="text-gray-700 hover:underline px-3 py-2 rounded-md text-sm font-medium">Posts</Link>
+
                   <a href="#" class="text-gray-700 hover:text-gray-800 hover:underline px-3 py-2 rounded-md text-sm font-medium">About</a>
               </div>
           </div>
@@ -56,7 +60,9 @@
         <DisclosureButton as="a" href="/"
         :class="{ 'bg-gray-900 text-white block ': $page.component === 'Welcome' }"
         class="text-gray-300 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">Home</DisclosureButton>
-        <DisclosureButton as="a" href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Post</DisclosureButton>
+        <DisclosureButton as="a" :href="route('posts.index')" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+            Post
+        </DisclosureButton>
         <DisclosureButton as="a" href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</DisclosureButton>
       </div>
     </DisclosurePanel>
