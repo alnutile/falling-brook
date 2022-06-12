@@ -1002,6 +1002,12 @@ select {
 .col-span-6 {
   grid-column: span 6 / span 6;
 }
+.m-2 {
+  margin: 0.5rem;
+}
+.m-1 {
+  margin: 0.25rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1077,6 +1083,12 @@ select {
 }
 .-mt-px {
   margin-top: -1px;
+}
+.mb-auto {
+  margin-bottom: auto;
+}
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 .block {
   display: block;
@@ -1356,6 +1368,9 @@ select {
 .gap-5 {
   gap: 1.25rem;
 }
+.gap-2 {
+  gap: 0.5rem;
+}
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(2rem * var(--tw-space-x-reverse));
@@ -1385,6 +1400,16 @@ select {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1550,6 +1575,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
+.bg-gray-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
 }
@@ -1634,6 +1663,14 @@ select {
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
+}
+.py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 .pt-6 {
   padding-top: 1.5rem;

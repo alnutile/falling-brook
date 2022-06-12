@@ -3,7 +3,9 @@
     <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <div class="flex items-center px-2 lg:px-0">
-          <div class="flex-shrink-0">Alfred Nutile</div>
+          <div class="flex-shrink-0">
+              <Link :href="route('home')">Alfred Nutile</Link>
+          </div>
         </div>
 
         <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end" v-if="search">

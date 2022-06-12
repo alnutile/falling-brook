@@ -5,7 +5,7 @@ use Inertia\Inertia;
 use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
-
+use Illuminate\Database\Eloquent\Builder;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +17,17 @@ use Illuminate\Foundation\Application;
 |
 */
 
-Route::get('/', \App\Http\Controllers\HomeController::class);
+Route::get('/', \App\Http\Controllers\HomeController::class)->name("home");
 Route::get("/terms/{tag}", function(\App\Models\Tag $tag) {
+    $posts = Post::whereHas('tags', function (Builder $query) use ($tag) {
+        $query->where('tags.id', $tag->id);
+    })->simplePaginate(10);
 
-});
+ return Inertia::render("Terms/List", [
+     "posts" => PostResource::collection($posts),
+     "tag" => $tag
+ ]);
+})->name("terms.list");
 
 Route::middleware([
     'auth:sanctum',

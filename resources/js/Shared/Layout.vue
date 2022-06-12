@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col"> 
+  <div class="flex flex-col justify-between min-h-screen">
       <header>
         <TopNav></TopNav>
       </header>
-      <main class="flex-grow h-5/6 mt-1">
+      <main class="flex-grow mb-auto mt-1">
           <slot />
       </main>
       <!-- footer coming soon -->
