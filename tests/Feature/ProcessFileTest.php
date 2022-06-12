@@ -16,7 +16,7 @@ class ProcessFileTest extends TestCase
 {
 
     use RefreshDatabase;
-    
+
     public function test_broken_title() {
         $path = base_path("tests/fixtures/breaks.md");
         $content = File::get($path);
@@ -43,8 +43,10 @@ class ProcessFileTest extends TestCase
     }
 
     public function test_content() {
-        $content = $this->getContent();
-        $results = ProcessFile::handle($content);
+        $path = base_path("tests/fixtures/breaks.md");
+        $content = File::get($path);
+        $file = new SplFileInfo("breaks.md", $path, $path);
+        $results = ProcessFile::handle($content, $file);
 
         $this->assertNotNull($results->title);
         $this->assertNotNull($results->date);
@@ -67,8 +69,9 @@ http://drupalcampma.com/using-jquery-and-ajax-outside-drupal-fapi\r\n
 Though this drupal backbone session looks great!\r\n
 http://drupalcampma.com/drupal-and-backbonejs
 EOD;
-        $content = $this->getContent();
-        $results = ProcessFile::handle($content);
+        $path = base_path("tests/fixtures/breaks.md");
+        $file = new SplFileInfo("breaks.md", $path, $path);
+        $results = ProcessFile::handle($content, $file);
         $this->assertEquals($results->markdown, $content);
     }
 
@@ -101,15 +104,16 @@ EOD;
     }
 
     public function test_make_model() {
-        $content = $this->getContent();
-        $results = ProcessFile::handle($content);
-
+        $path = base_path("tests/fixtures/breaks.md");
+        $content = File::get($path);
+        $file = new SplFileInfo("breaks.md", $path, $path);
+        $results = ProcessFile::handle($content, $file);
         $model = Post::create($results->toModel());
-
         $this->assertNotNull($model->slug);
     }
 
     public function test_for_reals() {
+        $this->markTestSkipped("Just for trying locally");
         ImportPostsRepository::handle();
     }
 }

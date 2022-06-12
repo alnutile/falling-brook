@@ -20,8 +20,18 @@ class PostFactory extends Factory
             "title" => $this->faker->title(),
             "body" => $this->faker->sentences(4, true),
             "html" => null,
-            "image_url" => null,
+            "active" => 1,
+            "image_url" => "/images/heros/hero-messy.png",
             "slug" => $this->faker->slug()
         ];
+    }
+
+    public function nonActive()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'active' => 0,
+            ];
+        });
     }
 }

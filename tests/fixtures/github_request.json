@@ -1,0 +1,3 @@
+{
+    "query": "    query {\n        user(login: \"alnutile\") {\n          email\n          createdAt\n          contributionsCollection(from: \"2022-04-09T00:00:00+00:00\", to: \"2022-06-11T23:59:59+00:00\") {\n            contributionCalendar {\n              colors\n              totalContributions\n              weeks {\n                contributionDays {\n                  color\n                  contributionCount\n                  date\n                  weekday\n                }\n                firstDay\n              }\n            }\n          }\n        }\n    }"
+}

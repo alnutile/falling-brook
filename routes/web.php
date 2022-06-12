@@ -1,7 +1,11 @@
 <?php
 
+use App\Models\Post;
+use Inertia\Inertia;
+use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Foundation\Application;
+use Illuminate\Database\Eloquent\Builder;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +17,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', \App\Http\Controllers\HomeController::class)->name("home");
+
+Route::get("/posts", function() {
+    $posts = Post::published()->latest()->paginate(12);
+
+    return Inertia::render("Posts/Index", [
+        "posts" => PostResource::collection($posts)
+    ]);
+})->name("posts.index");
+
+Route::get("/terms/{tag}", function(\App\Models\Tag $tag) {
+    $posts = Post::whereHas('tags', function (Builder $query) use ($tag) {
+        $query->where('tags.id', $tag->id);
+    })->simplePaginate(12);
+
+ return Inertia::render("Terms/List", [
+     "posts" => PostResource::collection($posts),
+     "tag" => $tag
+ ]);
+})->name("terms.list");
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
 });
