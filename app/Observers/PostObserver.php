@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Post;
+use Facades\App\Services\PostsFixImagePaths;
 use Illuminate\Support\Str;
 
 class PostObserver
@@ -20,7 +21,10 @@ class PostObserver
 
     protected function convertToHtml(Post $post)
     {
-        $post->html = Str::of($post->body)->markdown();
+        $body = PostsFixImagePaths::fixMarkDown($post->body);
+        $html = Str::of($body)->markdown();
+        $post->body = $body;
+        $post->html = $html;
         $post->saveQuietly();
     }
 

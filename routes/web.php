@@ -19,6 +19,16 @@ use Illuminate\Database\Eloquent\Builder;
 
 Route::get('/', \App\Http\Controllers\HomeController::class)->name("home");
 
+Route::get("/posts/{post}", function(Post $post) {
+    if($post->active == 0) {
+        abort(404);
+    }
+
+    return Inertia::render("Posts/Show", [
+        "post" => new PostResource($post)
+    ]);
+})->name("posts.show");
+
 Route::get("/posts", function() {
     $posts = Post::published()->latest()->paginate(12);
 

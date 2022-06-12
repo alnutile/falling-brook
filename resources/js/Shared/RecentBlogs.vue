@@ -13,17 +13,17 @@
           <div class="flex-1 bg-white p-6 flex flex-col justify-between">
             <div class="flex-1">
               <p class="text-sm font-medium text-indigo-600">
-                <a :href="`/terms/${tag.id}`" class="hover:underline" v-for="tag in post.tags" :key="tag.id">
+                <Link :href="route('terms.list', tag.id)" class="hover:underline" v-for="tag in post.tags" :key="tag.id">
                   {{ tag.name }}&nbsp;
-                </a>
+                </Link>
               </p>
-              <a :href="`/terms/${post.slug}`" class="block mt-2">
+              <Link :href="route('posts.show', post.id)" class="block mt-2">
                 <p class="text-xl font-semibold text-gray-900">
                   {{ post.title }}
                 </p>
                 <p class="mt-3 text-base text-gray-500" v-html="post.summary">
                 </p>
-              </a>
+              </Link>
             </div>
             <div class="mt-6 flex items-center">
               <div class="flex-shrink-0">
@@ -55,7 +55,9 @@
 </template>
 
 <script>
+import { Link } from '@inertiajs/inertia-vue3';
 export default {
+    components: { Link },
   props: ['posts']
 }
 </script>
