@@ -2,28 +2,26 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Post extends Resource
+class Tag extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Post::class;
+    public static $model = \App\Models\Tag::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -32,8 +30,7 @@ class Post extends Resource
      */
     public static $search = [
         'id',
-        "title",
-        "body"
+        "name"
     ];
 
     /**
@@ -46,10 +43,8 @@ class Post extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make("title"),
-            Markdown::make("body"),
-            BelongsToMany::make("Tags"),
-            Text::make("slug"),
+            Text::make("Name"),
+            Text::make("Slug"),
         ];
     }
 
