@@ -11,7 +11,8 @@ class Tag extends Model
 
     protected $guarded = [];
 
-    public static function topTags() {
+    public static function topTags()
+    {
         return Tag::withCount("posts")->limit(5)->orderBy("posts_count", "DESC")->get();
     }
 
