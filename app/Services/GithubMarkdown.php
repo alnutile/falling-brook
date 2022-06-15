@@ -19,7 +19,8 @@ class GithubMarkdown
 {
     public MarkdownConverter $commonMarkConverter;
 
-    public function __construct() {
+    public function __construct()
+    {
         $config = [
             'footnote' => [
                 'backref_class'      => 'footnote-backref',
@@ -47,7 +48,8 @@ class GithubMarkdown
     }
 
 
-    public function convert(string $markdown) : RenderedContentWithFrontMatter|RenderedContentInterface {
+    public function convert(string $markdown): RenderedContentWithFrontMatter|RenderedContentInterface
+    {
         return $this->commonMarkConverter->convert($markdown);
     }
 }

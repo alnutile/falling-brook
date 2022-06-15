@@ -24,7 +24,7 @@ class ProcessFile
 
     public RenderedContentWithFrontMatter|RenderedContentInterface $convert;
 
-    public function handle(string $content, SplFileInfo $file) : ProcessFile
+    public function handle(string $content, SplFileInfo $file): ProcessFile
     {
         $this->convert = GithubMarkdown::convert($content);
 

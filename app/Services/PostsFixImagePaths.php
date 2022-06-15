@@ -7,7 +7,6 @@ use Facades\App\Services\GithubMarkdown;
 
 class PostsFixImagePaths
 {
-
     public function handle()
     {
         Post::get()->map(
@@ -31,6 +30,4 @@ class PostsFixImagePaths
         $markdown = str($markdown)->replace('"images', '"/images');
         return $markdown;
     }
-
-
 }
