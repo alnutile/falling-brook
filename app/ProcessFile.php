@@ -57,9 +57,9 @@ class ProcessFile
         /** @phpstan-ignore-next-line */
         $frontMatter = $this->convert->getFrontMatter();
         $this->title = data_get($frontMatter, "title");
-        $this->date = data_get($frontMatter, "date");
+        $this->date = data_get($frontMatter, "date", now());
         $this->image_url = data_get($frontMatter, "hero", $this->image_url);
-        $this->tags = data_get($frontMatter, "tags");
+        $this->tags = data_get($frontMatter, "tags", []);
         $this->slug = data_get($frontMatter, "menu.sidebar.identifier", Str::slug($this->title));
     }
 }

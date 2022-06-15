@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Models;
 
+use App\Models\Tag;
+use App\Services\TagHelpers;
 use Tests\TestCase;
 use App\Models\Post;
 use Illuminate\Support\Str;
@@ -11,6 +13,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class PostTest extends TestCase
 {
     use RefreshDatabase;
+    use TagHelpers;
 
     public function test_factory() {
         $model = Post::factory()->create();
@@ -32,20 +35,19 @@ class PostTest extends TestCase
     public function test_tags() {
         $post = Post::factory()->create();
 
-        $tag = "Foo";
+        $tags = [
+            "Foo",
+            "Bar"
+        ];
+        $tagIds = $this->findOrCreateTags($tags);
 
-        $post->tags()->firstOrCreate(
-            ['name' => $tag],
-            ['slug' => Str::slug($tag)]
-        );
+        $post->tags()->attach($tagIds);
 
-        $tag = "Bar";
+        $this->assertCount(2, $post->refresh()->tags);
 
-        $post->tags()->firstOrCreate(
-            ['name' => $tag],
-            ['slug' => Str::slug($tag)]
-        );
+        $post2 = Post::factory()->create();
 
-        $this->assertCount(2, $post->tags);
+        $post2->tags()->attach($tagIds);
+        $this->assertCount(2, $post2->refresh()->tags);
     }
 }
