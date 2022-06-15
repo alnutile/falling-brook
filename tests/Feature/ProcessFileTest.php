@@ -73,6 +73,20 @@ EOD;
 
     public function test_markdown() {
         $content = <<<EOD
+---
+layout: post
+title: I Love Markdown
+date: 2013-01-14
+hero: /images/heros/hero-messy.png
+tags:
+  - test
+  - example
+menu:
+  sidebar:
+    name: "DrupalCamp Western Mass"
+    identifier: drupal-camp--western--mass
+    weight: -1
+---
 \n
 I will be presenting on 2 topics.\r\n
 \r\n
@@ -121,16 +135,11 @@ EOD;
     }
 
     public function test_make_model() {
-        $path = base_path("tests/fixtures/breaks.md");
+        $path = base_path("tests/fixtures/hugo.md");
         $content = File::get($path);
-        $file = new SplFileInfo("breaks.md", $path, $path);
+        $file = new SplFileInfo("hugo.md", $path, $path);
         $results = ProcessFile::handle($content, $file);
         $model = Post::create($results->toModel());
         $this->assertNotNull($model->slug);
-    }
-
-    public function test_for_reals() {
-        $this->markTestSkipped("Just for trying locally");
-        ImportPostsRepository::handle();
     }
 }

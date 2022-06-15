@@ -6,7 +6,6 @@ use Facades\App\Services\GithubMarkdown;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
-use League\CommonMark\MarkdownConverter;
 use League\CommonMark\Output\RenderedContent;
 use League\CommonMark\Output\RenderedContentInterface;
 use Symfony\Component\Finder\SplFileInfo;
@@ -17,17 +16,17 @@ class ProcessFile
 
     public SplFileInfo $file;
     public string $html;
-    public string $date = "";
-    public string $stug = "";
+    public string $date;
+    public string $slug;
     public string $image_url = "/images/heros/hero-messy.png";
-    public string $markdown = "";
+    public string $markdown;
     public array $tags = [];
 
-    public MarkdownConverter $converter;
+    public RenderedContentWithFrontMatter|RenderedContentInterface $convert;
 
     public function handle(string $content, SplFileInfo $file) : ProcessFile
     {
-        $this->converter = GithubMarkdown::converter()  ;
+        $this->convert = GithubMarkdown::convert($content);
 
         $this->processHeader();
 
@@ -46,7 +45,8 @@ class ProcessFile
             'body' => $this->markdown,
             "html" => $this->html,
             'image_url' => $this->image_url,
-            "created_at" => Carbon::parse($this->date),
+            /** @phpstan-ignore-next-line */
+            "created_at" => Carbon::parse((int)$this->date),
             "slug" => $this->slug,
             'active' => 1,
         ];
@@ -54,6 +54,7 @@ class ProcessFile
 
     protected function processHeader()
     {
+        /** @phpstan-ignore-next-line */
         $frontMatter = $this->convert->getFrontMatter();
         $this->title = data_get($frontMatter, "title");
         $this->date = data_get($frontMatter, "date");

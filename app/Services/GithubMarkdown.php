@@ -46,11 +46,8 @@ class GithubMarkdown
         $this->commonMarkConverter = new MarkdownConverter($environment);
     }
 
-    public function converter() : MarkdownConverter {
-        return $this->commonMarkConverter;
-    }
 
-    public function convert(string $markdown) : RenderedContentInterface {
+    public function convert(string $markdown) : RenderedContentWithFrontMatter|RenderedContentInterface {
         return $this->commonMarkConverter->convert($markdown);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Post;
+use Facades\App\Services\GithubMarkdown;
 use Facades\App\Services\PostsFixImagePaths;
 use Illuminate\Support\Str;
 
@@ -22,7 +23,7 @@ class PostObserver
     protected function convertToHtml(Post $post)
     {
         $body = PostsFixImagePaths::fixMarkDown($post->body);
-        $html = PostsFixImagePaths::convert($body);
+        $html = GithubMarkdown::convert($body)->getContent();
         $post->body = $body;
         $post->html = $html;
         $post->saveQuietly();
