@@ -1,3 +1,9 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+blockquote {
+    background-color: #E9ECEF;
+    padding: 5px;
+    border-left: 5px solid #8d8687 !important;
+}

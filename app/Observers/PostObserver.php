@@ -22,7 +22,7 @@ class PostObserver
     protected function convertToHtml(Post $post)
     {
         $body = PostsFixImagePaths::fixMarkDown($post->body);
-        $html = Str::of($body)->markdown();
+        $html = PostsFixImagePaths::convert($body);
         $post->body = $body;
         $post->html = $html;
         $post->saveQuietly();

@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "embed/embed": "^4.4",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.5.2",
         "laravel/framework": "^9.2",
@@ -13,7 +14,9 @@
         "laravel/nova": "~4.0",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "league/commonmark": "^2.3",
         "spatie/data-transfer-object": "^3.8",
+        "symfony/yaml": "^6.1",
         "tightenco/ziggy": "^1.0",
         "ylsideas/feature-flags": "^1.5"
     },

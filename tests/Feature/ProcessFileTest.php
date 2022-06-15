@@ -17,17 +17,34 @@ class ProcessFileTest extends TestCase
 
     use RefreshDatabase;
 
-    public function test_broken_title() {
-        $path = base_path("tests/fixtures/breaks.md");
-        $content = File::get($path);
-        $file = new SplFileInfo("breaks.md", $path, $path);
-        $results = ProcessFile::handle($content, $file);
+    public function test_using_the_right_library() {
+        $content = <<<EOD
+---
+layout: post
+title: I Love Markdown
+date: 2013-01-14
+hero: /images/heros/hero-messy.png
+tags:
+  - test
+  - example
+menu:
+  sidebar:
+    name: "DrupalCamp Western Mass"
+    identifier: drupal-camp--western--mass
+    weight: -1
+---
 
-        $this->assertNotNull($results->title);
-        $this->assertNotNull($results->date);
-        $this->assertNotNull($results->image_url);
-        $this->assertCount(2, $results->tags);
-        Post::create($results->toModel());
+# Hello World!
+EOD;
+
+        $path = base_path("tests/fixtures/hugo.md");
+        $file = new SplFileInfo("hugo.md", $path, $path);
+        $results = ProcessFile::handle($content, $file);
+        $this->assertEquals("1358121600", $results->date);
+        $this->assertEquals("I Love Markdown", $results->title);
+        $this->assertEquals(['test', 'example'], $results->tags);
+        $this->assertEquals("drupal-camp--western--mass", $results->slug);
+        $this->assertEquals("/images/heros/hero-messy.png", $results->image_url);
     }
 
     public function test_images_copied() {

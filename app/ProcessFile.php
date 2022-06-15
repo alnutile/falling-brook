@@ -2,31 +2,40 @@
 
 namespace App;
 
+use Facades\App\Services\GithubMarkdown;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
+use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Output\RenderedContent;
+use League\CommonMark\Output\RenderedContentInterface;
 use Symfony\Component\Finder\SplFileInfo;
 
 class ProcessFile
 {
     public $title = null;
 
-    /**
-     * @var SplFileInfo $file
-     */
-    public $file = null;
-    public $date = null;
-    public $image_url = "/images/heros/hero-messy.png";
-    public $markdown = null;
-    public $tags = [];
+    public SplFileInfo $file;
+    public string $html;
+    public string $date = "";
+    public string $stug = "";
+    public string $image_url = "/images/heros/hero-messy.png";
+    public string $markdown = "";
+    public array $tags = [];
 
-    public function handle(string $content, SplFileInfo $file)
+    public MarkdownConverter $converter;
+
+    public function handle(string $content, SplFileInfo $file) : ProcessFile
     {
-        $this->processHeader($content);
+        $this->converter = GithubMarkdown::converter()  ;
+
+        $this->processHeader();
 
         $this->file = $file;
 
-        $this->markdown = Str::afterLast($content, "---\n");
+        $this->markdown = $content;
 
+        $this->html = $this->convert->getContent();
         return $this;
     }
 
@@ -35,35 +44,21 @@ class ProcessFile
         return [
             "title" => $this->title,
             'body' => $this->markdown,
-            "html" => Str::of($this->markdown)->markdown(),
+            "html" => $this->html,
             'image_url' => $this->image_url,
             "created_at" => Carbon::parse($this->date),
-            "slug" => $this->file->getBasename('.md')
+            "slug" => $this->slug,
+            'active' => 1,
         ];
     }
 
-    protected function processHeader($content)
+    protected function processHeader()
     {
-        $tempArray = explode("\n", $content);
-
-        foreach ($tempArray as $line) {
-            if (Str::startsWith($line, "title") && $this->title == null) {
-                $this->title = Str::remove("\"", Str::after($line, "title: "));
-            }
-
-            if (Str::startsWith($line, "date") && $this->date == null) {
-                $this->date = Str::after($line, "date: ");
-            }
-
-            if (Str::startsWith($line, "hero") && $this->image_url == null) {
-                $this->image_url = Str::after($line, "hero: ");
-            }
-
-            if (Str::startsWith($line, "tags") && empty($this->tags)) {
-                $tags = Str::remove("tags:", $line);
-                $tags = Str::remove(["[", "]"], trim($tags));
-                $this->tags = explode(",", $tags);
-            }
-        }
+        $frontMatter = $this->convert->getFrontMatter();
+        $this->title = data_get($frontMatter, "title");
+        $this->date = data_get($frontMatter, "date");
+        $this->image_url = data_get($frontMatter, "hero", $this->image_url);
+        $this->tags = data_get($frontMatter, "tags");
+        $this->slug = data_get($frontMatter, "menu.sidebar.identifier", Str::slug($this->title));
     }
 }

@@ -25,9 +25,9 @@ EOD;
         );
         $post->save();
 
-        PostsFixImagePaths::handle();
+        $markdown = PostsFixImagePaths::fixMarkdown($post->body);
 
-        $this->assertStringContainsString('src="/images/notifications.gif', $post->refresh()->html);
+        $this->assertStringContainsString('![](/images/notifications.gif', $markdown);
     }
 
     public function test_fixes_html_in_markdown() {

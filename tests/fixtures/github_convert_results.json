@@ -1,0 +1,17 @@
+{
+    "layout": "post",
+    "title": "I Love Markdown",
+    "date": 1358121600,
+    "hero": "\/images\/heros\/hero-messy.png",
+    "tags": [
+        "test",
+        "example"
+    ],
+    "menu": {
+        "sidebar": {
+            "name": "DrupalCamp Western Mass",
+            "identifier": "drupal-camp--western--mass",
+            "weight": -1
+        }
+    }
+}
