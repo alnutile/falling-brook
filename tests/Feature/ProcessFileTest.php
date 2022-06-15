@@ -59,6 +59,15 @@ EOD;
         $this->assertCount(2, $results->tags);
     }
 
+    public function test_removes_front_matter() {
+        $path = base_path("tests/fixtures/breaks.md");
+        $content = File::get($path);
+        $file = new SplFileInfo("breaks.md", $path, $path);
+        $results = ProcessFile::handle($content, $file);
+
+        $this->assertStringNotContainsString("---\n", $results->markdown);
+    }
+
     public function test_content() {
         $path = base_path("tests/fixtures/breaks.md");
         $content = File::get($path);
@@ -73,37 +82,14 @@ EOD;
 
     public function test_markdown() {
         $content = <<<EOD
----
-layout: post
-title: I Love Markdown
-date: 2013-01-14
-hero: /images/heros/hero-messy.png
-tags:
-  - test
-  - example
-menu:
-  sidebar:
-    name: "DrupalCamp Western Mass"
-    identifier: drupal-camp--western--mass
-    weight: -1
----
-\n
-I will be presenting on 2 topics.\r\n
-\r\n
-Using a VM for development the url can be seen below.\r\n
-http://drupalcampma.com/virtual-box-ubuntu-local-development-strategy\r\n
-\r\n
-jQuery/Ajax without using the Drupal FAPI\r\n
-http://drupalcampma.com/using-jquery-and-ajax-outside-drupal-fapi\r\n
-\r\n
-\r\n
-Though this drupal backbone session looks great!\r\n
-http://drupalcampma.com/drupal-and-backbonejs
+# Hello
+
 EOD;
-        $path = base_path("tests/fixtures/breaks.md");
-        $file = new SplFileInfo("breaks.md", $path, $path);
-        $results = ProcessFile::handle($content, $file);
-        $this->assertEquals($results->markdown, $content);
+        $path = base_path("tests/fixtures/after.md");
+        $contentBefore = File::get($path);
+        $file = new SplFileInfo("after.md", $path, $path);
+        $results = ProcessFile::handle($contentBefore, $file);
+        $this->assertEquals($content, $results->markdown);
     }
 
     protected function getContent() {

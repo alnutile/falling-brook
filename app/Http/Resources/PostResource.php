@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Facades\App\Services\GithubMarkdown;
 use Illuminate\Support\Str;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,6 +16,7 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
+        $body = GithubMarkdown::convert($this->body);
         return [
             "title" => $this->title,
             "id" => $this->id,
@@ -26,7 +28,7 @@ class PostResource extends JsonResource
             "hero" => random_hero(),
             "tags" => $this->tags,
             "lead" => optional($this->tags->first())->name,
-            "summary" => Str::of(Str::limit(strip_tags($this->body), 180))->markdown(),
+            "summary" => Str::limit($body->getContent(), 180),
         ];
     }
 }

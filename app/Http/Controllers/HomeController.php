@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Facades\App\Screens\Welcome\GithubContributions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ class HomeController extends Controller
 
         return Inertia::render('Welcome', [
             'github_results' => $contributions,
+            "tags" => Tag::topTags(),
             'recents' => PostResource::collection($recents)
         ]);
     }

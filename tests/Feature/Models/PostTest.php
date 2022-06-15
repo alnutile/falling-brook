@@ -50,4 +50,6 @@ class PostTest extends TestCase
         $post2->tags()->attach($tagIds);
         $this->assertCount(2, $post2->refresh()->tags);
     }
+
+
 }

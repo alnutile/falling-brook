@@ -32,9 +32,10 @@ class ProcessFile
 
         $this->file = $file;
 
-        $this->markdown = $content;
+        $this->markdown = \str($content)->afterLast("---\n")->value();
 
         $this->html = $this->convert->getContent();
+
         return $this;
     }
 
