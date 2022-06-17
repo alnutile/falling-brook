@@ -15,7 +15,7 @@
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <SearchIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
               </div>
-              <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-700 text-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm" placeholder="Search" type="search" />
+              <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-700 text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm" placeholder="Search" type="search" />
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
 
           <div class="hidden lg:block lg:ml-6">
               <div class="flex space-x-4">
-                  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-800 hover:bg-gray-700 hover:text-white" -->
                   <Link :href="route('home')"
                         :class="{ 'underline text-gray-800': $page.component === 'Welcome' }"
                         class="text-gray-700 hover:underline px-3 py-2 rounded-md text-sm font-medium">Home</Link>
@@ -59,14 +59,18 @@
 
     <DisclosurePanel class="lg:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
-        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-800 hover:bg-gray-700 hover:text-white" -->
         <DisclosureButton as="a" :href="route('home')"
-        :class="{ 'bg-gray-900 text-white block ': $page.component === 'Welcome' }"
-        class="text-gray-300 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">Home</DisclosureButton>
-        <DisclosureButton as="a" :href="route('posts.index')" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+        :class="{ 'bg-gray-200 text-white block ': $page.component === 'Welcome' }"
+        class="text-gray-800 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">Home</DisclosureButton>
+        <DisclosureButton 
+        :class="{ 'bg-gray-200 text-white block ': $page.component === 'Posts/Index' }"
+        as="a" :href="route('posts.index')" class="text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
             Post
         </DisclosureButton>
-        <DisclosureButton as="a" :href="route('about')" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</DisclosureButton>
+        <DisclosureButton 
+        :class="{ 'bg-gray-200 text-white block ': $page.component === 'About' }"
+        as="a" :href="route('about')" class="text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</DisclosureButton>
       </div>
     </DisclosurePanel>
   </Disclosure>
