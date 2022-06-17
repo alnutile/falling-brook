@@ -105,4 +105,4 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Deploy
-        run: curl https://forge.laravel.com/servers/467889/sites/1669037/deploy/http?token=${{ secrets.FORGE_TOKEN }}
+        run: curl https://envoyer.io/deploy/{{secrets.ENOYER}}
