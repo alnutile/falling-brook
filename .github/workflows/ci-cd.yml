@@ -105,4 +105,4 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Deploy
-        run: curl https://envoyer.io/deploy/{{secrets.ENOYER}}
+        run: curl https://envoyer.io/deploy/${{secrets.ENOYER}}
