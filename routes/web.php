@@ -44,7 +44,7 @@ Route::get("/posts", function() {
 Route::get("/terms/{tag}", function(\App\Models\Tag $tag) {
     $posts = Post::whereHas('tags', function (Builder $query) use ($tag) {
         $query->where('tags.id', $tag->id);
-    })->simplePaginate(12);
+    })->latest()->simplePaginate(12);
 
  return Inertia::render("Terms/List", [
      "posts" => PostResource::collection($posts),
