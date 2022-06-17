@@ -46,7 +46,10 @@
                         :class="{ 'underline text-gray-800': $page.component === 'Posts/Index' }"
                         class="text-gray-700 hover:underline px-3 py-2 rounded-md text-sm font-medium">Posts</Link>
 
-                  <a href="#" class="text-gray-700 hover:text-gray-800 hover:underline px-3 py-2 rounded-md text-sm font-medium">About</a>
+                  <Link :href="route('about')"
+                        :class="{ 'underline text-gray-800': $page.component === 'Posts/About' }"
+                        class="text-gray-700 hover:underline px-3 py-2 rounded-md text-sm font-medium">About</Link>
+
               </div>
           </div>
 
@@ -57,13 +60,13 @@
     <DisclosurePanel class="lg:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <DisclosureButton as="a" href="/"
+        <DisclosureButton as="a" :href="route('home')"
         :class="{ 'bg-gray-900 text-white block ': $page.component === 'Welcome' }"
         class="text-gray-300 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">Home</DisclosureButton>
         <DisclosureButton as="a" :href="route('posts.index')" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
             Post
         </DisclosureButton>
-        <DisclosureButton as="a" href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</DisclosureButton>
+        <DisclosureButton as="a" :href="route('about')" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</DisclosureButton>
       </div>
     </DisclosurePanel>
   </Disclosure>

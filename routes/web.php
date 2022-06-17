@@ -19,6 +19,10 @@ use Illuminate\Database\Eloquent\Builder;
 
 Route::get('/', \App\Http\Controllers\HomeController::class)->name("home");
 
+Route::get("/about", function(){
+    return Inertia::render("About");
+})->name("about");
+
 Route::get("/posts/{post}", function(Post $post) {
     if($post->active == 0) {
         abort(404);
