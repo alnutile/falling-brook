@@ -3,7 +3,7 @@
 
     <Hero :github_results="github_results"></Hero>
 
-    <Search v-if="searchFeatureOn" @search="searchMethod"></Search>
+    <Search v-if="searchFeatureOn" @search="searchMethod" :searchFilter="search"></Search>
 
     <div class="text-center mt-3 mb-5">
         <h2 class="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">

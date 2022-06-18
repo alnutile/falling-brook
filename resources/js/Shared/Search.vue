@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-center mt-2 mx-auto">
         <input 
-        class="border-1 border-gray-300 w-1/2"
+        class="border-1 border-gray-300 sm:w-1/2 w-full"
         autofocus type="text" v-model="search" placeholder="Search posts.."/>
     </div>
 </template>
@@ -9,6 +9,10 @@
 <script>
 
 export default {
+    props: ['searchFilter'],
+    mounted() {
+        this.search = this.searchFilter;
+    },
     data() {
         return {
             search: null

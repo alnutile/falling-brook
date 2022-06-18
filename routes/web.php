@@ -34,6 +34,7 @@ Route::get("/posts/{post}", function(Post $post) {
 })->name("posts.show");
 
 Route::get("/posts", function() {
+    
     $posts = Post::published()->latest()->paginate(12);
 
     return Inertia::render("Posts/Index", [
