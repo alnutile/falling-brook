@@ -1244,17 +1244,20 @@ select {
 .-mt-px {
   margin-top: -1px;
 }
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+.mb-auto {
+  margin-bottom: auto;
+}
 .mb-10 {
   margin-bottom: 2.5rem;
 }
 .mr-1 {
   margin-right: 0.25rem;
 }
-.mb-5 {
-  margin-bottom: 1.25rem;
-}
-.mb-auto {
-  margin-bottom: auto;
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 .block {
   display: block;
@@ -1390,14 +1393,14 @@ select {
 .max-w-6xl {
   max-width: 72rem;
 }
-.max-w-prose {
-  max-width: 65ch;
-}
 .max-w-2xl {
   max-width: 42rem;
 }
 .max-w-lg {
   max-width: 32rem;
+}
+.max-w-prose {
+  max-width: 65ch;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1910,11 +1913,11 @@ select {
 .tracking-wider {
   letter-spacing: 0.05em;
 }
-.tracking-wide {
-  letter-spacing: 0.025em;
-}
 .tracking-tight {
   letter-spacing: -0.025em;
+}
+.tracking-wide {
+  letter-spacing: 0.025em;
 }
 .text-gray-500 {
   --tw-text-opacity: 1;
@@ -2577,6 +2580,11 @@ blockquote {
     padding-right: 1rem;
   }
 
+  .sm\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
   .sm\:pt-0 {
     padding-top: 0px;
   }
@@ -2707,6 +2715,11 @@ blockquote {
   .lg\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
+  }
+
+  .lg\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .lg\:pt-4 {

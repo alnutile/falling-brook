@@ -1,8 +1,11 @@
 <template>
 
     <div class="flex mx-auto sm:items-center flex-col mt-10 mb-10">
-        <div class="relative py-16 bg-white overflow-hidden">
+        <div class="relative  bg-white overflow-hidden">
             <div class="relative px-4 sm:px-6 lg:px-8">
+            <div class="mt-1 flex justify-center mb-2">
+                <img :src="post.data.hero" class="max-w-2xl">
+            </div>
                 <div class="text-lg max-w-prose mx-auto">
                     <h1>
                         <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase items-center">
