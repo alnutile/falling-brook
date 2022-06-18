@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center mt-2 mx-auto">
+    <div class="flex justify-center mt-2 mx-auto p-2">
         <input 
         class="border-1 border-gray-300 sm:w-1/2 w-full"
         autofocus type="text" v-model="search" placeholder="Search posts.."/>
