@@ -105,7 +105,7 @@ export default {
   },
   computed: {
     search() {
-      return featureFlag("search", this.$page);
+      return featureFlag("searchNav", this.$page);
     }
   }
 }
