@@ -6,6 +6,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Markdown;
 use Illuminate\Filesystem\Filesystem;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -56,6 +57,7 @@ class Post extends Resource
             Text::make("title"),
             Markdown::make("body"),
             BelongsToMany::make("Tags"),
+            Boolean::make("Acitve")->default(1),
             Text::make("slug")->placeholder('This will come from title you can edit on updstate')->readonly(function ($request) {
                 return $request->isCreateOrAttachRequest();
             }),
