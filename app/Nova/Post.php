@@ -2,11 +2,14 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Markdown;
+use Illuminate\Filesystem\Filesystem;
+use Laravel\Nova\Fields\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Post extends Resource
@@ -44,12 +47,24 @@ class Post extends Resource
      */
     public function fields(NovaRequest $request)
     {
+        // $path = public_path("images/heros/");
+        // $heros = Storage::disk("local")->files($path);
+
+        // logger($heros);
         return [
             ID::make()->sortable(),
             Text::make("title"),
             Markdown::make("body"),
             BelongsToMany::make("Tags"),
             Text::make("slug"),
+            Select::make('Image Url')->options([
+                '/images/heros/default-hero.jpg' => '/images/heros/default-hero.jpg',
+                "/images/heros/hero-coding.jpg" => "/images/heros/hero-coding.jpg",
+                "/images/heros/hero-messy.jpg" => "/images/heros/hero-messy.jpg",
+                "/images/heros/hero-office.jpg" => "/images/heros/hero-office.jpg",
+                "/images/heros/hero-space.jpg" => "/images/heros/hero-space.jpg",
+                "/images/heros/hero-time.jpg" => "/images/heros/hero-time.jpg",
+            ]),
         ];
     }
 
