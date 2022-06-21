@@ -56,7 +56,7 @@ class Post extends Resource
             Text::make("title"),
             Markdown::make("body"),
             BelongsToMany::make("Tags"),
-            Text::make("slug"),
+            Text::make("slug")->readonly(),
             Select::make('Image Url')->options([
                 '/images/heros/default-hero.jpg' => '/images/heros/default-hero.jpg',
                 "/images/heros/hero-coding.jpg" => "/images/heros/hero-coding.jpg",

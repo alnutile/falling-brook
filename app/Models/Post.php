@@ -30,6 +30,18 @@ class Post extends Model
         ];
     }
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::created(function ($post) {
+            $post->slug = str($post->title)->slug()->toString();
+        });
+    }
+
 
     public function getReadTimeAttribute()
     {

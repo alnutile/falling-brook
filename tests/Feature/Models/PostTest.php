@@ -3,10 +3,10 @@
 namespace Tests\Feature\Models;
 
 use App\Models\Tag;
-use App\Services\TagHelpers;
 use Tests\TestCase;
 use App\Models\Post;
 use Illuminate\Support\Str;
+use App\Services\TagHelpers;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -20,6 +20,10 @@ class PostTest extends TestCase
         $this->assertNotNull($model->title);
         $this->assertNotNull($model->body);
         $this->assertNotNull($model->slug);
+        $this->assertEquals(
+            str($model->title)->slug()->value(),
+            $model->slug
+        );
         $this->assertNotNull($model->html);
         $this->assertNotNull($model->read_time);
     }
