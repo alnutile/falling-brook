@@ -56,7 +56,9 @@ class Post extends Resource
             Text::make("title"),
             Markdown::make("body"),
             BelongsToMany::make("Tags"),
-            Text::make("slug")->readonly(),
+            Text::make("slug")->placeholder('This will come from title you can edit on updstate')->readonly(function ($request) {
+                return $request->isCreateOrAttachRequest();
+            }),
             Select::make('Image Url')->options([
                 '/images/heros/default-hero.jpg' => '/images/heros/default-hero.jpg',
                 "/images/heros/hero-coding.jpg" => "/images/heros/hero-coding.jpg",

@@ -37,7 +37,7 @@ class Post extends Model
      */
     protected static function booted()
     {
-        static::created(function ($post) {
+        static::creating(function ($post) {
             $post->slug = str($post->title)->slug()->toString();
         });
     }
