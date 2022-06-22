@@ -33,15 +33,13 @@ class HomeControllerTest extends TestCase
     public function test_published() {
         $this->turnFeatureOn("search");
         
-        $post2 = Post::factory()->create(
-            ['title' => "Baz"]
-        );
+     
         
         $post = Post::factory()->create(
             ['title' => "Foobar"]
         );
 
-        $post = Post::factory()->create(
+        $post2 = Post::factory()->create(
             ['title' => "Baz", "active" => false]
         );
 
@@ -56,7 +54,7 @@ class HomeControllerTest extends TestCase
         $this->get("/")
             ->assertInertia(fn (Assert $page) => $page
             ->component('Welcome')
-            ->has("recents.data", 2)
+            ->has("recents.data", 1)
         );
 
         $this->get("/?search=Foobar")
