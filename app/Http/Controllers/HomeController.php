@@ -18,10 +18,11 @@ class HomeController extends Controller
         $search = $request->search;
 
         if ($search) {
-            $recents = Post::search($search)->get();
-            logger("This is search", [$search]);
+            $recents = Post::search($search)
+                ->where("active", 1)->get();
         } else {
-            $recents = Post::published()->whereNotNull("body")->latest()->limit(3)->get();
+            $recents = Post::published()
+                ->whereNotNull("body")->latest()->limit(3)->get();
         }
 
 

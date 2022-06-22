@@ -30,7 +30,7 @@ class HomeControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_search() {
+    public function test_published() {
         $this->turnFeatureOn("search");
         
         $post2 = Post::factory()->create(
@@ -40,6 +40,11 @@ class HomeControllerTest extends TestCase
         $post = Post::factory()->create(
             ['title' => "Foobar"]
         );
+
+        $post = Post::factory()->create(
+            ['title' => "Baz", "active" => false]
+        );
+
         $data = new ContributionResponseDto(
             [
                 "days" => [],
@@ -59,5 +64,50 @@ class HomeControllerTest extends TestCase
             ->component('Welcome')
             ->has("recents.data", 1)
         );
+
+        $this->get("/?search=Baz")
+        ->assertInertia(fn (Assert $page) => $page
+        ->component('Welcome')
+        ->has("recents.data", 0)
+    );
+    }
+
+    public function test_search() {
+        $this->turnFeatureOn("search");
+    
+        
+        $post = Post::factory()->create(
+            ['title' => "Foobar", 'active' => true]
+        );
+
+        $post2 = Post::factory()->create(
+            ['title' => "NOTHERE", "active" => false]
+        );
+        
+        $data = new ContributionResponseDto(
+            [
+                "days" => [],
+                "total" => 444
+            ]
+        );
+        GithubContributions::shouldReceive('handle')->andReturn($data);
+        
+        $this->get("/")
+            ->assertInertia(fn (Assert $page) => $page
+            ->component('Welcome')
+            ->has("recents.data", 1)
+        );
+
+        $this->get("/?search=Foobar")
+            ->assertInertia(fn (Assert $page) => $page
+            ->component('Welcome')
+            ->has("recents.data", 1)
+        );
+        
+        $this->get("/?search=NOTHERE")
+        ->assertInertia(fn (Assert $page) => $page
+        ->component('Welcome')
+        ->has("recents.data", 0)
+    );
     }
 }
