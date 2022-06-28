@@ -7,3 +7,9 @@ blockquote {
     padding: 5px;
     border-left: 5px solid #8d8687 !important;
 }
+
+.heading-permalink {
+    color: #000000;
+    font-size: small;
+    margin-right: 4px;
+}
