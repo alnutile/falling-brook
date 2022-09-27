@@ -17,6 +17,10 @@ use Illuminate\Database\Eloquent\Builder;
 |
 */
 
+Route::get("/example-iframe", function() {
+    return view('example-iframe');
+});
+
 Route::get('/', \App\Http\Controllers\HomeController::class)->name("home");
 
 Route::get("/about", function(){
