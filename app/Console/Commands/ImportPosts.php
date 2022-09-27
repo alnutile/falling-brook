@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
 use Facades\App\ImportPostsRepository;
+use Illuminate\Console\Command;
 
 class ImportPosts extends Command
 {

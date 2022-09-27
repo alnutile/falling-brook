@@ -2,23 +2,20 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Post;
 use Facades\App\ProcessFile;
-use Illuminate\Support\Facades\File;
-use Facades\App\ImportPostsRepository;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Finder\SplFileInfo;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\File;
+use Symfony\Component\Finder\SplFileInfo;
+use Tests\TestCase;
 
 class ProcessFileTest extends TestCase
 {
-
     use RefreshDatabase;
 
-    public function test_using_the_right_library() {
-        $content = <<<EOD
+    public function test_using_the_right_library()
+    {
+        $content = <<<'EOD'
 ---
 layout: post
 title: I Love Markdown
@@ -37,19 +34,20 @@ menu:
 # Hello World!
 EOD;
 
-        $path = base_path("tests/fixtures/hugo.md");
-        $file = new SplFileInfo("hugo.md", $path, $path);
+        $path = base_path('tests/fixtures/hugo.md');
+        $file = new SplFileInfo('hugo.md', $path, $path);
         $results = ProcessFile::handle($content, $file);
-        $this->assertEquals("I Love Markdown", $results->title);
+        $this->assertEquals('I Love Markdown', $results->title);
         $this->assertEquals(['test', 'example'], $results->tags);
-        $this->assertEquals("drupal-camp--western--mass", $results->slug);
-        $this->assertEquals("/images/heros/hero-messy.png", $results->image_url);
+        $this->assertEquals('drupal-camp--western--mass', $results->slug);
+        $this->assertEquals('/images/heros/hero-messy.png', $results->image_url);
     }
 
-    public function test_images_copied() {
-        $path = base_path("tests/fixtures/breaks.md");
+    public function test_images_copied()
+    {
+        $path = base_path('tests/fixtures/breaks.md');
         $content = File::get($path);
-        $file = new SplFileInfo("breaks.md", $path, $path);
+        $file = new SplFileInfo('breaks.md', $path, $path);
         $results = ProcessFile::handle($content, $file);
 
         $this->assertNotNull($results->title);
@@ -58,19 +56,21 @@ EOD;
         $this->assertCount(2, $results->tags);
     }
 
-    public function test_removes_front_matter() {
-        $path = base_path("tests/fixtures/breaks.md");
+    public function test_removes_front_matter()
+    {
+        $path = base_path('tests/fixtures/breaks.md');
         $content = File::get($path);
-        $file = new SplFileInfo("breaks.md", $path, $path);
+        $file = new SplFileInfo('breaks.md', $path, $path);
         $results = ProcessFile::handle($content, $file);
 
         $this->assertStringNotContainsString("---\n", $results->markdown);
     }
 
-    public function test_content() {
-        $path = base_path("tests/fixtures/breaks.md");
+    public function test_content()
+    {
+        $path = base_path('tests/fixtures/breaks.md');
         $content = File::get($path);
-        $file = new SplFileInfo("breaks.md", $path, $path);
+        $file = new SplFileInfo('breaks.md', $path, $path);
         $results = ProcessFile::handle($content, $file);
 
         $this->assertNotNull($results->title);
@@ -79,20 +79,22 @@ EOD;
         $this->assertCount(2, $results->tags);
     }
 
-    public function test_markdown() {
-        $this->markTestSkipped("Just not working on ci so will come back to it later");
-        $content = <<<EOD
+    public function test_markdown()
+    {
+        $this->markTestSkipped('Just not working on ci so will come back to it later');
+        $content = <<<'EOD'
 # Hello
 
 EOD;
-        $path = base_path("tests/fixtures/after.md");
+        $path = base_path('tests/fixtures/after.md');
         $contentBefore = File::get($path);
-        $file = new SplFileInfo("after.md", $path, $path);
+        $file = new SplFileInfo('after.md', $path, $path);
         $results = ProcessFile::handle($contentBefore, $file);
         $this->assertEquals($content, $results->markdown);
     }
 
-    protected function getContent() {
+    protected function getContent()
+    {
         return <<<EOD
 ---\n
 title: "DrupalCamp Western Mass"\n
@@ -120,10 +122,11 @@ http://drupalcampma.com/drupal-and-backbonejs
 EOD;
     }
 
-    public function test_make_model() {
-        $path = base_path("tests/fixtures/hugo.md");
+    public function test_make_model()
+    {
+        $path = base_path('tests/fixtures/hugo.md');
         $content = File::get($path);
-        $file = new SplFileInfo("hugo.md", $path, $path);
+        $file = new SplFileInfo('hugo.md', $path, $path);
         $results = ProcessFile::handle($content, $file);
         $model = Post::create($results->toModel());
         $this->assertNotNull($model->slug);

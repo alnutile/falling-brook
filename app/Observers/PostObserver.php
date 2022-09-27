@@ -5,7 +5,6 @@ namespace App\Observers;
 use App\Models\Post;
 use Facades\App\Services\GithubMarkdown;
 use Facades\App\Services\PostsFixImagePaths;
-use Illuminate\Support\Str;
 
 class PostObserver
 {

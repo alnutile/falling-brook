@@ -30,7 +30,7 @@ class Tag extends Resource
      */
     public static $search = [
         'id',
-        "name"
+        'name',
     ];
 
     /**
@@ -43,8 +43,8 @@ class Tag extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make("Name"),
-            Text::make("Slug"),
+            Text::make('Name'),
+            Text::make('Slug'),
         ];
     }
 

@@ -1,11 +1,11 @@
 <?php
 
 use Laravel\Nova\Actions\ActionResource;
+use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Http\Middleware\Authorize;
 use Laravel\Nova\Http\Middleware\BootTools;
-use Laravel\Nova\Http\Middleware\Authenticate;
-use Laravel\Nova\Http\Middleware\HandleInertiaRequests;
 use Laravel\Nova\Http\Middleware\DispatchServingNovaEvent;
+use Laravel\Nova\Http\Middleware\HandleInertiaRequests;
 
 return [
 
@@ -20,7 +20,7 @@ return [
     |
     */
 
-    'admin' => env("NOVA_ADMIN"),
+    'admin' => env('NOVA_ADMIN'),
     'license_key' => env('NOVA_LICENSE_KEY'),
 
     /*

@@ -7,9 +7,9 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class ContributionResponseDto extends DataTransferObject
 {
-    #[MapFrom("days")]
+    #[MapFrom('days')]
     public array $days;
 
-    #[MapFrom("total")]
+    #[MapFrom('total')]
     public int $total;
 }

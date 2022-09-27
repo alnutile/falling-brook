@@ -28,6 +28,7 @@ class PostsFixImagePaths
     {
         $markdown = str($markdown)->replace('](images', '](/images');
         $markdown = str($markdown)->replace('"images', '"/images');
+
         return $markdown;
     }
 }

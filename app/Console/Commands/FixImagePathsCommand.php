@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Post;
 use Facades\App\Services\PostsFixImagePaths;
 use Illuminate\Console\Command;
 
@@ -30,6 +29,7 @@ class FixImagePathsCommand extends Command
     public function handle()
     {
         PostsFixImagePaths::handle();
+
         return 0;
     }
 }

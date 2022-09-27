@@ -2,20 +2,18 @@
 
 namespace Tests\Feature\Models;
 
-use App\Models\Tag;
-use Tests\TestCase;
 use App\Models\Post;
-use Illuminate\Support\Str;
 use App\Services\TagHelpers;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PostTest extends TestCase
 {
     use RefreshDatabase;
     use TagHelpers;
 
-    public function test_factory() {
+    public function test_factory()
+    {
         $model = Post::factory()->create();
         $this->assertNotNull($model->title);
         $this->assertNotNull($model->body);
@@ -28,7 +26,8 @@ class PostTest extends TestCase
         $this->assertNotNull($model->read_time);
     }
 
-    public function test_active() {
+    public function test_active()
+    {
         $post = Post::factory()->create();
         $post2 = Post::factory()->nonActive()->create();
 
@@ -36,12 +35,13 @@ class PostTest extends TestCase
         $this->assertCount(1, $posts);
     }
 
-    public function test_tags() {
+    public function test_tags()
+    {
         $post = Post::factory()->create();
 
         $tags = [
-            "Foo",
-            "Bar"
+            'Foo',
+            'Bar',
         ];
         $tagIds = $this->findOrCreateTags($tags);
 
@@ -54,6 +54,4 @@ class PostTest extends TestCase
         $post2->tags()->attach($tagIds);
         $this->assertCount(2, $post2->refresh()->tags);
     }
-
-
 }

@@ -3,16 +3,14 @@
 namespace Tests\Feature;
 
 use Facades\App\Services\GithubMarkdown;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use Tests\TestCase;
 
 class GithubMarkdownTest extends TestCase
 {
-
-    public function test_converter() {
-        $markdown = <<<EOD
+    public function test_converter()
+    {
+        $markdown = <<<'EOD'
 ---
 layout: post
 title: I Love Markdown
@@ -36,8 +34,8 @@ EOD;
         $this->assertInstanceOf(RenderedContentWithFrontMatter::class, $results);
         $results = $results->getFrontMatter();
 
-        $this->assertArrayHasKey("layout", $results);
-        $this->assertArrayHasKey("title", $results);
-        $this->assertArrayHasKey("tags", $results);
+        $this->assertArrayHasKey('layout', $results);
+        $this->assertArrayHasKey('title', $results);
+        $this->assertArrayHasKey('tags', $results);
     }
 }

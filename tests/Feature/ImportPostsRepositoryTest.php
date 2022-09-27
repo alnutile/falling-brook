@@ -2,22 +2,19 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Facades\App\ImportPostsRepository;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ImportPostsRepositoryTest extends TestCase
 {
-
     use RefreshDatabase;
 
-    public function test_iterates_over_files() {
-        $this->markTestSkipped("Just testing something locally");
-        $this->assertDatabaseCount("posts", 0);
+    public function test_iterates_over_files()
+    {
+        $this->markTestSkipped('Just testing something locally');
+        $this->assertDatabaseCount('posts', 0);
         ImportPostsRepository::handle();
-        $this->assertDatabaseCount("posts", 262);
+        $this->assertDatabaseCount('posts', 262);
     }
-
-
 }

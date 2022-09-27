@@ -17,6 +17,7 @@ trait TagHelpers
             );
             $tagIds[] = $tag->id;
         }
+
         return $tagIds;
     }
 }

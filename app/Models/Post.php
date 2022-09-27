@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Laravel\Scout\Searchable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
@@ -26,7 +26,7 @@ class Post extends Model
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'body' => $this->body
+            'body' => $this->body,
         ];
     }
 
@@ -42,7 +42,6 @@ class Post extends Model
         });
     }
 
-
     public function getReadTimeAttribute()
     {
         return readtime($this->body);
@@ -50,7 +49,7 @@ class Post extends Model
 
     public function scopePublished(Builder $query)
     {
-        return $query->where("active", 1);
+        return $query->where('active', 1);
     }
 
     public function tags()

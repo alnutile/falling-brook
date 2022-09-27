@@ -1,11 +1,12 @@
 <?php
 
-use App\Models\Post;
-use Inertia\Inertia;
 use App\Http\Resources\PostResource;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,45 +18,44 @@ use Illuminate\Database\Eloquent\Builder;
 |
 */
 
-Route::get("/example-iframe", function() {
+Route::get('/example-iframe', function () {
     return view('example-iframe');
 });
 
-Route::get('/', \App\Http\Controllers\HomeController::class)->name("home");
+Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
 
-Route::get("/about", function(){
-    return Inertia::render("About");
-})->name("about");
+Route::get('/about', function () {
+    return Inertia::render('About');
+})->name('about');
 
-Route::get("/posts/{post}", function(Post $post) {
-    if($post->active == 0) {
+Route::get('/posts/{post}', function (Post $post) {
+    if ($post->active == 0) {
         abort(404);
     }
 
-    return Inertia::render("Posts/Show", [
-        "post" => new PostResource($post)
+    return Inertia::render('Posts/Show', [
+        'post' => new PostResource($post),
     ]);
-})->name("posts.show");
+})->name('posts.show');
 
-Route::get("/posts", function() {
-    
+Route::get('/posts', function () {
     $posts = Post::published()->latest()->paginate(12);
 
-    return Inertia::render("Posts/Index", [
-        "posts" => PostResource::collection($posts)
+    return Inertia::render('Posts/Index', [
+        'posts' => PostResource::collection($posts),
     ]);
-})->name("posts.index");
+})->name('posts.index');
 
-Route::get("/terms/{tag}", function(\App\Models\Tag $tag) {
+Route::get('/terms/{tag}', function (App\Models\Tag $tag) {
     $posts = Post::whereHas('tags', function (Builder $query) use ($tag) {
         $query->where('tags.id', $tag->id);
     })->latest()->simplePaginate(12);
 
- return Inertia::render("Terms/List", [
-     "posts" => PostResource::collection($posts),
-     "tag" => $tag
- ]);
-})->name("terms.list");
+    return Inertia::render('Terms/List', [
+        'posts' => PostResource::collection($posts),
+        'tag' => $tag,
+    ]);
+})->name('terms.list');
 
 Route::middleware([
     'auth:sanctum',

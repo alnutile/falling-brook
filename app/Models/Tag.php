@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
@@ -13,7 +13,7 @@ class Tag extends Model
 
     public static function topTags()
     {
-        return Tag::withCount("posts")->limit(5)->orderBy("posts_count", "DESC")->get();
+        return Tag::withCount('posts')->limit(5)->orderBy('posts_count', 'DESC')->get();
     }
 
     public function posts()

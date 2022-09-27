@@ -2,19 +2,17 @@
 
 namespace App\Services;
 
-use App\Models\Post;
-use League\CommonMark\MarkdownConverter;
-use League\CommonMark\Output\RenderedContent;
 use League\CommonMark\Environment\Environment;
-use League\CommonMark\Extension\Embed\EmbedExtension;
-use League\CommonMark\Output\RenderedContentInterface;
-use League\CommonMark\Extension\Footnote\FootnoteExtension;
-use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
-use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\Embed\Bridge\OscaroteroEmbedAdapter;
-use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
+use League\CommonMark\Extension\Embed\EmbedExtension;
+use League\CommonMark\Extension\Footnote\FootnoteExtension;
+use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
+use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
+use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
+use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Output\RenderedContentInterface;
 
 class GithubMarkdown
 {
@@ -24,13 +22,13 @@ class GithubMarkdown
     {
         $config = [
             'footnote' => [
-                'backref_class'      => 'footnote-backref',
-                'backref_symbol'     => '↩',
-                'container_add_hr'   => true,
-                'container_class'    => 'footnotes',
-                'ref_class'          => 'footnote-ref',
-                'ref_id_prefix'      => 'fnref:',
-                'footnote_class'     => 'footnote',
+                'backref_class' => 'footnote-backref',
+                'backref_symbol' => '↩',
+                'container_add_hr' => true,
+                'container_class' => 'footnotes',
+                'ref_class' => 'footnote-ref',
+                'ref_id_prefix' => 'fnref:',
+                'footnote_class' => 'footnote',
                 'footnote_id_prefix' => 'fn:',
             ],
             'embed' => [
@@ -48,7 +46,6 @@ class GithubMarkdown
         $environment->addExtension(new EmbedExtension());
         $this->commonMarkConverter = new MarkdownConverter($environment);
     }
-
 
     public function convert(string $markdown): RenderedContentWithFrontMatter|RenderedContentInterface
     {
