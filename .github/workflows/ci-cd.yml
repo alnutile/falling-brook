@@ -67,14 +67,10 @@ jobs:
       - name: Clear Config
         run: php artisan config:clear
 
-      # Setup Done now to test and lint the code
-      # - name: Run PHPMD
-      #   run: phpmd app github phpmd.ruleset.xml
-
       # Run linting to make sure it is worthwhile before NPM
-      - name: phpstan
-        run: |
-          ./vendor/bin/phpstan analyse
+      # - name: phpstan
+      #   run: |
+      #     ./vendor/bin/phpstan analyse
 
       # Again another lint before we do the js build
       - name: PHP Code Style (phpcs)

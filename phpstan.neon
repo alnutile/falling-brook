@@ -14,7 +14,9 @@ parameters:
     excludePaths:
         - ./*/*/FileToBeExcluded.php
         - app/Nova/*
+        - ./vendor
         - app/Http/Middleware/Authenticate.php
         - app/Services/FirestoreService.php
+        - vendor/symfony/*
 
     checkMissingIterableValueType: false
