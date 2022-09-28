@@ -73,11 +73,8 @@ jobs:
       #     ./vendor/bin/phpstan analyse
 
       # Again another lint before we do the js build
-      - name: PHP Code Style (phpcs)
-        uses: chindit/actions-phpcs@master
-        with:
-          cli: "--standard=PSR12"
-          dir: app/
+      - name: PHP Code Style (pint)
+        run: cf
 
       # The tests take care of the migrations we just want the .env file in place
       - name: Migrations
