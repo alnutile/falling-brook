@@ -74,7 +74,8 @@ jobs:
 
       # Again another lint before we do the js build
       - name: PHP Code Style (pint)
-        run: cf
+        run: |
+          ./vendor/bin/pint
 
       # The tests take care of the migrations we just want the .env file in place
       - name: Migrations
