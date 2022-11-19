@@ -42,12 +42,13 @@ class Media extends Resource
     {
         return [
             ID::make()->sortable(),
-            Image::make("File Name")
-                ->disk("public")
+            Image::make('File Name')
+                ->disk('public'),
         ];
     }
 
     /**
+     *
      * Get the cards available for the request.
      *
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
