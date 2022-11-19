@@ -3,32 +3,25 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\Markdown;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Post extends Resource
+class Media extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Post::class;
+    public static $model = \App\Models\Media::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -37,8 +30,6 @@ class Post extends Resource
      */
     public static $search = [
         'id',
-        'title',
-        'body',
     ];
 
     /**
@@ -51,22 +42,8 @@ class Post extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('title'),
-            Markdown::make('body'),
-            BelongsToMany::make('Tags'),
-            Boolean::make('Active')->default(1),
-            Text::make('slug')->placeholder('This will come from title you can edit on updstate')->readonly(function ($request) {
-                return $request->isCreateOrAttachRequest();
-            }),
-            Image::make(""),
-            Select::make('Image Url')->options([
-                '/images/heros/default-hero.jpg' => '/images/heros/default-hero.jpg',
-                '/images/heros/hero-coding.jpg' => '/images/heros/hero-coding.jpg',
-                '/images/heros/hero-messy.jpg' => '/images/heros/hero-messy.jpg',
-                '/images/heros/hero-office.jpg' => '/images/heros/hero-office.jpg',
-                '/images/heros/hero-space.jpg' => '/images/heros/hero-space.jpg',
-                '/images/heros/hero-time.jpg' => '/images/heros/hero-time.jpg',
-            ]),
+            Image::make("File Name")
+                ->disk("public")
         ];
     }
 
